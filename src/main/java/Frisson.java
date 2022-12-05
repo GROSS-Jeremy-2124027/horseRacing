@@ -11,7 +11,7 @@ public class Frisson extends Cheval{
         this.nomCheval = nomCheval;
         this.numeroCheval = numeroCheval;
         this.nombreVictoire = nombreVictoire;
-        this.coteCheval = coteCheval;
+        this.coteCheval = calculNote(coteCheval, vitesseCheval.getCoefficient());
         this.sexeCheval = sexeCheval;
         this.vitesseCheval = vitesseCheval;
     }
