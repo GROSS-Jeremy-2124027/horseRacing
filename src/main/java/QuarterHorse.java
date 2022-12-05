@@ -3,16 +3,16 @@ public class QuarterHorse extends Cheval{
     private int numeroCheval, nombreVictoire;
     private double coteCheval;
     private Sexe sexeCheval;
-    private Vitesse vitesse;
+    private Vitesse vitesseCheval;
 
 
-    public QuarterHorse(String nomCheval, int numeroCheval, int nombreVictoire, double coteCheval, Sexe sexeCheval, Vitesse vitesse) {
+    public QuarterHorse(String nomCheval, int numeroCheval, int nombreVictoire, double coteCheval, Sexe sexeCheval, Vitesse vitesseCheval) {
         this.nomCheval = nomCheval;
         this.numeroCheval = numeroCheval;
         this.nombreVictoire = nombreVictoire;
-        this.coteCheval = coteCheval;
+        this.coteCheval = calculCote(coteCheval, vitesseCheval.getCoefficient());
         this.sexeCheval = sexeCheval;
-        this.vitesse = vitesse;
+        this.vitesseCheval = vitesseCheval;
     }
 
 
