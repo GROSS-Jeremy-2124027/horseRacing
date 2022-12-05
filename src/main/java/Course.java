@@ -17,4 +17,8 @@ public class Course extends Thread {
         }
 
     }
+
+    public static void main(String[] args) {
+        Cheval cheval1 = Ecurie.createCheval(new PurSangArabeFactory())
+    }
 }
