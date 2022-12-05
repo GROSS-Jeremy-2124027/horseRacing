@@ -1,3 +1,10 @@
 public enum Vitesse {
-    TRES_LENT, LENT, MOYEN, RAPIDE, TRES_RAPIDE;
+    TRES_LENT {
+        @Override
+        public double getCoefficient() {
+            return
+        }
+    }, LENT, MOYEN, RAPIDE, TRES_RAPIDE;
+
+    abstract double getCoefficient();
 }
