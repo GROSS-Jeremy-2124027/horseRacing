@@ -15,7 +15,6 @@ public class DispositifsDeLaCourse {
             switch (typeCheval) {
                 case "Frisson":
                     Vitesse vitesse = listeDeVitesses.get(new Random().nextInt(listeDeVitesses.size()));
-                    System.out.println("cheval " + compteurCheval + ", vitesse = " + vitesse);
                     switch (vitesse) {
                         case LENT:
                             Sexe sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
