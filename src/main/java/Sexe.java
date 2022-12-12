@@ -1,3 +1,15 @@
 public enum Sexe {
-    MALE, FEMALE;
+    MALE {
+        @Override
+        public String toString() {
+            return "male";
+        }
+    }, FEMALE {
+        @Override
+        public String toString() {
+            return "femelle";
+        }
+    };
+
+    public abstract String toString();
 }
