@@ -13,6 +13,7 @@ public class Mustang extends Cheval{
         return "Mustang";
     }
 
+    // Permet de calculer la vraie côte du cheval en fonction de sa vitesse et de la côte de base
     public double calculCote(double coteCheval, double coefficient){
         return coteCheval * coefficient;
     }

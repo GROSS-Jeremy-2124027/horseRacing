@@ -12,6 +12,8 @@ public class PurSangArabe extends Cheval{
     public String getRace() {
         return "PurSangArabe";
     }
+
+    // Permet de calculer la vraie côte du cheval en fonction de sa vitesse et de la côte de base
     public double calculCote(double coteCheval, double coefficient){
         return coteCheval * coefficient;
     }

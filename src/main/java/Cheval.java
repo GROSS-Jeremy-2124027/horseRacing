@@ -1,4 +1,6 @@
 public abstract class Cheval {
+    // Attributs de la classe Cheval
+    // Protected pour raison d'héritage
     protected String nomCheval;
     protected int numeroCheval, nombreVictoire;
     protected double coteCheval;
@@ -19,8 +21,10 @@ public abstract class Cheval {
                 '}';
     }
 
+    // Méthode abstraite pour pouvoir savoir de quelle race est le cheval
     public abstract String getRace();
 
+    // Getters
     public String getNomCheval() {
         return nomCheval;
     }

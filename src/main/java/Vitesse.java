@@ -46,6 +46,7 @@ public enum Vitesse {
         }
     };
 
+    // Méthode qui va retourner un double en fonction de la vitesse du cheval
     public abstract double getCoefficient();
     public abstract String toString();
 }

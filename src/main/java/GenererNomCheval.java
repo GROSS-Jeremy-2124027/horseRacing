@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Random;
 
 public class GenererNomCheval {
+    // Liste de chaine de caractère comportant les cinquante noms de chevaux les plus utilisés (apparement)
     private static List<String> listeNomCheval = new ArrayList<>(List.of("Arion",
             "Balios",
             "Basmati",
@@ -53,11 +54,15 @@ public class GenererNomCheval {
             "Xanthos",
             "Youps",
             "Zigzag"));
+    // Méthode qui renvoie une chaine de caractère pour nommer un cheval
     public static String donneNomCheval() {
-        Random random = new Random();
-        int indiceListeCheval = random.nextInt(listeNomCheval.size());
+        // On prend un indice aléatoirement
+        int indiceListeCheval = new Random().nextInt(listeNomCheval.size());
+        // On prend le nom de cheval à cet indice
         String nomCheval = listeNomCheval.get(indiceListeCheval);
+        // On supprime ce même nom
         listeNomCheval.remove(indiceListeCheval);
+        // On retourne le nom
         return nomCheval;
     }
 }
