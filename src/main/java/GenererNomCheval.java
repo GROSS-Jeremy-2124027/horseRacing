@@ -53,8 +53,6 @@ public class GenererNomCheval {
             "Xanthos",
             "Youps",
             "Zigzag"));
-
-
     public static String donneNomCheval() {
         Random random = new Random();
         return listeNomCheval.get(random.nextInt(0, listeNomCheval.size()));

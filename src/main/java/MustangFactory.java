@@ -16,7 +16,27 @@ public class MustangFactory implements ChevalFactory{
     }
 
     @Override
-    public Cheval createCheval() {
-        return new Mustang(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, vitesseCheval);
+    public Cheval createChevalTresLent() {
+        return new Mustang(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.TRES_LENT);
+    }
+
+    @Override
+    public Cheval createChevalLent() {
+        return new Mustang(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.LENT);
+    }
+
+    @Override
+    public Cheval createChevalMoyen() {
+        return new Mustang(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.MOYEN);
+    }
+
+    @Override
+    public Cheval createChevalRapide() {
+        return new Mustang(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.RAPIDE);
+    }
+
+    @Override
+    public Cheval createChevalTresRapide() {
+        return new Mustang(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.TRES_RAPIDE);
     }
 }

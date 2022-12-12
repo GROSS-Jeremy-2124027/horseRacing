@@ -15,8 +15,29 @@ public class QuarterHorseFactory implements ChevalFactory {
         this.vitesseCheval = vitesseCheval;
     }
 
+
     @Override
-    public Cheval createCheval() {
-        return new QuarterHorse(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, vitesseCheval);
+    public Cheval createChevalTresLent() {
+        return new QuarterHorse(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.TRES_LENT);
+    }
+
+    @Override
+    public Cheval createChevalLent() {
+        return new QuarterHorse(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.LENT);
+    }
+
+    @Override
+    public Cheval createChevalMoyen() {
+        return new QuarterHorse(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.MOYEN);
+    }
+
+    @Override
+    public Cheval createChevalRapide() {
+        return new QuarterHorse(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.RAPIDE);
+    }
+
+    @Override
+    public Cheval createChevalTresRapide() {
+        return new QuarterHorse(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.TRES_RAPIDE);
     }
 }

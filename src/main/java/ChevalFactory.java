@@ -1,3 +1,8 @@
 public interface ChevalFactory {
-    Cheval createCheval();
+    Cheval createChevalTresLent();
+    Cheval createChevalLent();
+    Cheval createChevalMoyen();
+
+    Cheval createChevalRapide();
+    Cheval createChevalTresRapide();
 }

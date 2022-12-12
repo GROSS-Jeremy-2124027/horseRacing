@@ -16,7 +16,27 @@ public class PurSangArabeFactory implements ChevalFactory {
     }
 
     @Override
-    public Cheval createCheval() {
-        return new PurSangArabe(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, vitesseCheval);
+    public Cheval createChevalTresLent() {
+        return new PurSangArabe(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.TRES_LENT);
+    }
+
+    @Override
+    public Cheval createChevalLent() {
+        return new PurSangArabe(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.LENT);
+    }
+
+    @Override
+    public Cheval createChevalMoyen() {
+        return new PurSangArabe(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.MOYEN);
+    }
+
+    @Override
+    public Cheval createChevalRapide() {
+        return new PurSangArabe(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.RAPIDE);
+    }
+
+    @Override
+    public Cheval createChevalTresRapide() {
+        return new PurSangArabe(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.TRES_RAPIDE);
     }
 }
