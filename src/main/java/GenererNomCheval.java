@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GenererNomCheval {
-    private List<String> listeNomCheval = new ArrayList<>(List.of("Arion",
+    private static List<String> listeNomCheval = new ArrayList<>(List.of("Arion",
             "Balios",
             "Basmati",
             "Ben-hur",
@@ -54,5 +55,8 @@ public class GenererNomCheval {
             "Zigzag"));
 
 
-    public static
+    public static String donneNomCheval() {
+        Random random = new Random();
+        return listeNomCheval.get(random.nextInt(0, listeNomCheval.size()));
+    }
 }
