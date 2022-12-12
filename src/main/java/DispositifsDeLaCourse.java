@@ -11,184 +11,252 @@ public class DispositifsDeLaCourse {
     public DispositifsDeLaCourse(int nombreChevaux, double coteDeBase) {
         int compteurCheval = 1;
         for (int i = 0; i < nombreChevaux; i += 1) {
-            String typeCheval = typesDeChevaux.get(new Random().nextInt(typesDeChevaux.size() - 1));
+            String typeCheval = typesDeChevaux.get(new Random().nextInt(typesDeChevaux.size()));
             switch (typeCheval) {
                 case "Frisson":
-                    Vitesse vitesse = listeDeVitesses.get(new Random().nextInt(listeDeVitesses.size() - 1));
+                    Vitesse vitesse = listeDeVitesses.get(new Random().nextInt(listeDeVitesses.size()));
+                    System.out.println("cheval " + compteurCheval + ", vitesse = " + vitesse);
                     switch (vitesse) {
                         case LENT:
-                            Sexe sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            Sexe sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalLent(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalLent(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                         case TRES_LENT:
-                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalTresLent(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalTresLent(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                         case MOYEN:
-                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalMoyen(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalMoyen(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                         case RAPIDE:
-                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalRapide(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalRapide(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                         case TRES_RAPIDE:
-                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalTresRapide(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalTresRapide(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                     }
+                    break;
                 case "Mustang":
-                    vitesse = listeDeVitesses.get(new Random().nextInt(listeDeVitesses.size() - 1));
+                    vitesse = listeDeVitesses.get(new Random().nextInt(listeDeVitesses.size()));
+                    System.out.println("cheval " + compteurCheval + ", vitesse = " + vitesse);
                     switch (vitesse) {
                         case LENT:
-                            Sexe sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            Sexe sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalLent(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalLent(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                         case TRES_LENT:
-                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalTresLent(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalTresLent(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                         case MOYEN:
-                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalMoyen(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalMoyen(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                         case RAPIDE:
-                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalRapide(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalRapide(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                         case TRES_RAPIDE:
-                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalTresRapide(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalTresRapide(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                     }
+                    break;
                 case "PurSangArabe":
-                    vitesse = listeDeVitesses.get(new Random().nextInt(listeDeVitesses.size() - 1));
+                    vitesse = listeDeVitesses.get(new Random().nextInt(listeDeVitesses.size()));
+                    System.out.println("cheval " + compteurCheval + ", vitesse = " + vitesse);
                     switch (vitesse) {
                         case LENT:
-                            Sexe sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            Sexe sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalLent(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalLent(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                         case TRES_LENT:
-                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalTresLent(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalTresLent(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                         case MOYEN:
-                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalMoyen(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalMoyen(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                         case RAPIDE:
-                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalRapide(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalRapide(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                         case TRES_RAPIDE:
-                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalTresRapide(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalTresRapide(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                     }
+                    break;
                 case "QuarterHorse"   :
-                    vitesse = listeDeVitesses.get(new Random().nextInt(listeDeVitesses.size() - 1));
+                    vitesse = listeDeVitesses.get(new Random().nextInt(listeDeVitesses.size()));
+                    System.out.println("cheval " + compteurCheval + ", vitesse = " + vitesse);
                     switch (vitesse) {
                         case LENT:
-                            Sexe sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            Sexe sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalLent(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalLent(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                         case TRES_LENT:
-                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalTresLent(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalTresLent(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                         case MOYEN:
-                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalMoyen(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalMoyen(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                         case RAPIDE:
-                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalRapide(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalRapide(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                         case TRES_RAPIDE:
-                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size() - 1));
+                            sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
                             switch (sexe) {
                                 case MALE:
                                     chevauxDeCourse.add(Ecurie.createChevalTresRapide(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    break;
                                 case FEMALE:
                                     chevauxDeCourse.add(Ecurie.createChevalTresRapide(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    break;
                             }
+                            break;
                     }
+                    break;
             }
             compteurCheval += 1;
         }
