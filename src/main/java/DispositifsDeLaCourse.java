@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class DispositifsDeLaCourse {
     private List<Cheval> chevauxDeCourse = new ArrayList<>();
@@ -8,9 +9,12 @@ public class DispositifsDeLaCourse {
     private List<Vitesse> listeDeVitesses = new ArrayList<>(List.of(Vitesse.TRES_LENT, Vitesse.LENT, Vitesse.MOYEN, Vitesse.RAPIDE, Vitesse.TRES_RAPIDE));
     private List<Sexe> listeDesSexes = new ArrayList<>(List.of(Sexe.MALE, Sexe.FEMALE));
 
+    private List<AtomicInteger> placesDesChevaux = new ArrayList<>();
+
     public DispositifsDeLaCourse(int nombreChevaux, double coteDeBase) {
         int compteurCheval = 1;
         for (int i = 0; i < nombreChevaux; i += 1) {
+            placesDesChevaux.add(new AtomicInteger(0));
             String typeCheval = typesDeChevaux.get(new Random().nextInt(typesDeChevaux.size()));
             switch (typeCheval) {
                 case "Frisson":
@@ -75,7 +79,6 @@ public class DispositifsDeLaCourse {
                     break;
                 case "Mustang":
                     vitesse = listeDeVitesses.get(new Random().nextInt(listeDeVitesses.size()));
-                    System.out.println("cheval " + compteurCheval + ", vitesse = " + vitesse);
                     switch (vitesse) {
                         case LENT:
                             Sexe sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
@@ -136,7 +139,6 @@ public class DispositifsDeLaCourse {
                     break;
                 case "PurSangArabe":
                     vitesse = listeDeVitesses.get(new Random().nextInt(listeDeVitesses.size()));
-                    System.out.println("cheval " + compteurCheval + ", vitesse = " + vitesse);
                     switch (vitesse) {
                         case LENT:
                             Sexe sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
@@ -197,7 +199,6 @@ public class DispositifsDeLaCourse {
                     break;
                 case "QuarterHorse"   :
                     vitesse = listeDeVitesses.get(new Random().nextInt(listeDeVitesses.size()));
-                    System.out.println("cheval " + compteurCheval + ", vitesse = " + vitesse);
                     switch (vitesse) {
                         case LENT:
                             Sexe sexe = listeDesSexes.get(new Random().nextInt(listeDesSexes.size()));
@@ -259,13 +260,10 @@ public class DispositifsDeLaCourse {
             }
             compteurCheval += 1;
         }
+
     }
 
     public List<Cheval> getChevauxDeCourse() {
         return chevauxDeCourse;
-    }
-
-    public List<String> getTypesDeChevaux() {
-        return typesDeChevaux;
     }
 }
