@@ -1,4 +1,3 @@
-# horseRacing
 ```mermaid
 classDiagram
     class Cheval {
@@ -32,7 +31,18 @@ classDiagram
         +calculNote() String
     }
 
-    class ChevalFactory {
+ 
+    Cheval <|-- Frisson
+    Cheval <|-- PurSangArabe
+    Cheval <|-- Mustang
+    Cheval <|-- PaintHorse
+    Cheval <|-- QuarterHorse
+    
+```
+
+```mermaid
+classDiagram
+     class ChevalFactory {
         <<interface>>
         +createCheval() cheval
     }
@@ -65,13 +75,6 @@ classDiagram
         +createChevalRapide(ChevalFactory) Cheval
         +createChevalTresRapide(ChevalFactory) Cheval
     }
- 
-    Cheval <|-- Frisson
-    Cheval <|-- PurSangArabe
-    Cheval <|-- Mustang
-    Cheval <|-- PaintHorse
-    Cheval <|-- QuarterHorse
-    
     ChevalFactory <.. PaintHorseFactory
     ChevalFactory <.. QuarterHorseFactory
     ChevalFactory <.. FrissonFactory
