@@ -6,13 +6,12 @@ public class QuarterHorseFactory implements ChevalFactory {
     private Sexe sexeCheval;
     private Vitesse vitesseCheval;
 
-    public QuarterHorseFactory(String nomCheval, int numeroCheval, int nombreVictoire, double coteCheval, Sexe sexeCheval, Vitesse vitesseCheval) {
+    public QuarterHorseFactory(String nomCheval, int numeroCheval, int nombreVictoire, double coteCheval, Sexe sexeCheval ) {
         this.nomCheval = nomCheval;
         this.numeroCheval = numeroCheval;
         this.nombreVictoire = nombreVictoire;
         this.coteCheval = coteCheval;
         this.sexeCheval = sexeCheval;
-        this.vitesseCheval = vitesseCheval;
     }
 
 

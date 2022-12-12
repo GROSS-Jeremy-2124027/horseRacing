@@ -55,6 +55,6 @@ public class GenererNomCheval {
             "Zigzag"));
     public static String donneNomCheval() {
         Random random = new Random();
-        return listeNomCheval.get(random.nextInt(0, listeNomCheval.size()));
+        return listeNomCheval.get(random.nextInt(listeNomCheval.size() - 1));
     }
 }
