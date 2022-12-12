@@ -8,6 +8,10 @@ public class Mustang extends Cheval{
         this.vitesse = vitesseCheval;
     }
 
+    @Override
+    public String getRace() {
+        return "Mustang";
+    }
 
     public double calculCote(double coteCheval, double coefficient){
         return coteCheval * coefficient;

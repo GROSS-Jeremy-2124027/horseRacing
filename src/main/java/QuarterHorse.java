@@ -8,6 +8,10 @@ public class QuarterHorse extends Cheval{
         this.vitesse = vitesseCheval;
     }
 
+    @Override
+    public String getRace() {
+        return "QuarterHorse";
+    }
 
     public double calculCote(double coteCheval, double coefficient){
         return coteCheval * coefficient;

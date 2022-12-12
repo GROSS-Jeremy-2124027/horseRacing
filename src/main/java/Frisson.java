@@ -7,6 +7,10 @@ public class Frisson extends Cheval{
         this.sexeCheval = sexeCheval;
         this.vitesse = vitesseCheval;
     }
+    @Override
+    public String getRace() {
+        return "Frisson";
+    }
 
     public double calculCote(double coteCheval, double coefficient){
         return coteCheval * coefficient;

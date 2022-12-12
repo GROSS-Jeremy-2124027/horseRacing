@@ -19,4 +19,6 @@ public abstract class Cheval {
                 '}';
     }
 
+    public abstract String getRace();
+
 }

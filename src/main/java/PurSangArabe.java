@@ -8,6 +8,10 @@ public class PurSangArabe extends Cheval{
         this.vitesse = vitesseCheval;
     }
 
+    @Override
+    public String getRace() {
+        return "PurSangArabe";
+    }
     public double calculCote(double coteCheval, double coefficient){
         return coteCheval * coefficient;
     }
