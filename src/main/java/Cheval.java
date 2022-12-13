@@ -1,4 +1,11 @@
-public abstract class Cheval {
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+
+public abstract class Cheval implements Runnable{
     // Attributs de la classe Cheval
     // Protected pour raison d'héritage
     protected String nomCheval;
@@ -48,4 +55,5 @@ public abstract class Cheval {
     public Vitesse getVitesse() {
         return vitesse;
     }
+
 }

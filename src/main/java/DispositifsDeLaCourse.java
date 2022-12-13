@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class DispositifsDeLaCourse {
@@ -14,15 +13,19 @@ public class DispositifsDeLaCourse {
     private List<Vitesse> listeDeVitesses = new ArrayList<>(List.of(Vitesse.TRES_LENT, Vitesse.LENT, Vitesse.MOYEN, Vitesse.RAPIDE, Vitesse.TRES_RAPIDE));
     // Liste qui permet de savoir si le cheval est un male ou une femelle
     private List<Sexe> listeDesSexes = new ArrayList<>(List.of(Sexe.MALE, Sexe.FEMALE));
-    // Liste d'entier atomic qui va permettre de déterminer la position de chaque cheval lors de la course
-    private List<AtomicInteger> placesDesChevaux = new ArrayList<>();
+    // Map d'entiers et d'entiers atomics qui va permettre de déterminer la position de chaque cheval lors de la course
+    private static Map<Integer, AtomicInteger> dictionnairePosition = new HashMap<>();
+
+    private static List<Thread> listeThread = new ArrayList<>();
+
+    private static AtomicBoolean enCours = new AtomicBoolean(true);
 
     public DispositifsDeLaCourse(int nombreChevaux, double coteDeBase) {
         // Permet de numéroter chaque cheval
         int compteurCheval = 1;
         for (int i = 0; i < nombreChevaux; i += 1) {
             // On ajoute un entier atomic pour chaque cheval
-            placesDesChevaux.add(new AtomicInteger(0));
+            dictionnairePosition.put(new Integer(i + 1), new AtomicInteger(0));
             // On prend une race de cheval aléatoirement dans la liste des types de chevaux
             String typeCheval = typesDeChevaux.get(new Random().nextInt(typesDeChevaux.size()));
             switch (typeCheval) {
@@ -37,10 +40,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le Frisson est un mâle
                                     // On ajoute un Frisson mâle et lent dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalLent(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le Frisson est une femelle
                                     // On ajoute un Frisson femelle et lent dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalLent(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -51,10 +58,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le Frisson est un mâle
                                     // On ajoute un Frisson mâle et très lent dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalTresLent(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: /// Si le Frisson est une femelle
                                     // On ajoute un Frisson femelle et très lent dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalTresLent(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -65,10 +76,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le Frisson est un male
                                     // On ajoute un Frisson mâle et moyennement rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalMoyen(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le Frisson est une femelle
                                     // On ajoute un Frisson femelle et moyennement rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalMoyen(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -79,10 +94,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le Frisson est un mâle
                                     // On ajoute un Frisson mâle et rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalRapide(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le Frisson est une femelle
                                     // On ajoute un Frisson femelle et rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalRapide(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -93,10 +112,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le cheval est un mâle
                                     // On ajoute un Frisson mâle et très rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalTresRapide(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le cheval est une femelle
                                     // On ajoute un Frisson femelle et très rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalTresRapide(new FrissonFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -113,10 +136,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le mustang est un mâle
                                     // On ajoute un Mustang mâle et lent dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalLent(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le mustang est une femelle
                                     // On ajoute un Mustang femelle et lent dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalLent(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -127,10 +154,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le mustang est un mâle
                                     // On ajoute un Mustang mâle et très lent dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalTresLent(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le mustang est une femelle
                                     // On ajoute un Mustang femelle et très lent dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalTresLent(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -141,10 +172,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le mustang est un mâle
                                     // On ajoute un Mustang mâle et moyennement rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalMoyen(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le mustang est une femelle
                                     // On ajoute un Mustang femelle et moyennement rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalMoyen(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -155,10 +190,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le mustang est un mâle
                                     // On ajoute un Mustang mâle et rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalRapide(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le mustang est une femelle
                                     // On ajoute un Mustang femelle et rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalRapide(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -169,10 +208,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le mustang est un mâle
                                     // On ajoute un Mustang mâle et très rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalTresRapide(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le mustang est une femelle
                                     // On ajoute un Mustang femelle et très rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalTresRapide(new MustangFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -189,10 +232,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le pur sang est un mâle
                                     // On ajoute un Pur sang mâle et lent dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalLent(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le pur sang est une femelle
                                     // On ajoute un Pur sang femelle et lent dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalLent(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -203,10 +250,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le pur sang est un mâle
                                     // On ajoute un Pur sang mâle et très lent dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalTresLent(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le pur sang est une femelle
                                     // On ajoute un Pur sang femelle et très lent dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalTresLent(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -217,10 +268,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le pur sang est un mâle
                                     // On ajoute un Pur sang mâle et moyennement rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalMoyen(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le pur sang est une femelle
                                     // On ajoute un Pur sang femelle et moyennement rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalMoyen(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -231,10 +286,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le pur sang est un mâle
                                     // On ajoute un Pur sang mâle et rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalRapide(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le pur sang est une femelle
                                     // On ajoute un Pur sang femelle et rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalRapide(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -245,10 +304,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le pur sang est un mâle
                                     // On ajoute un Pur sang mâle et très rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalTresRapide(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le pur sang est une femelle
                                     // On ajoute un Pur sang femelle et très rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalTresRapide(new PurSangArabeFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -265,10 +328,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le quarter horse est un mâle
                                     // On ajoute un Quarter horse mâle et lent dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalLent(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le quarter horse est une femelle
                                     // On ajoute un Quarter horse femelle et lent dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalLent(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -279,10 +346,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le quarter horse est un mâle
                                     // On ajoute un Quarter horse mâle et très lent dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalTresLent(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le quarter horse est un mâle
                                     // On ajoute un Quarter horse femelle et très lent dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalTresLent(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -293,10 +364,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le quarter horse est un mâle
                                     // On ajoute un Quarter horse mâle et moyennement rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalMoyen(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le quarter horse est une femelle
                                     // On ajoute un Quarter horse femelle et moyennement rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalMoyen(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -307,10 +382,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le quarter horse est un mâle
                                     // On ajoute un Quarter horse mâle et rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalRapide(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le quarter horse est une femelle
                                     // On ajoute un Quarter horse femelle et rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalRapide(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -321,10 +400,14 @@ public class DispositifsDeLaCourse {
                                 case MALE: // Si le quarter horse est un mâle
                                     // On ajoute un Quarter horse mâle et très rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalTresRapide(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.MALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                                 case FEMALE: // Si le quarter horse est une femelle
                                     // On ajoute un Quarter horse femelle et très rapide dans notre liste
                                     chevauxDeCourse.add(Ecurie.createChevalTresRapide(new QuarterHorseFactory(GenererNomCheval.donneNomCheval(), compteurCheval, 0, coteDeBase, Sexe.FEMALE)));
+                                    // On ajoute dans notre liste de thread le nouveau cheval
+                                    listeThread.add(new Thread(chevauxDeCourse.get(i)));
                                     break;
                             }
                             break;
@@ -335,6 +418,18 @@ public class DispositifsDeLaCourse {
             compteurCheval += 1;
         }
 
+    }
+
+    public static Map<Integer, AtomicInteger> getDictionnairePosition() {
+        return dictionnairePosition;
+    }
+
+    public static List<Thread> getListeThread() {
+        return listeThread;
+    }
+
+    public static AtomicBoolean getEnCours() {
+        return enCours;
     }
 
     public List<Cheval> getChevauxDeCourse() {
