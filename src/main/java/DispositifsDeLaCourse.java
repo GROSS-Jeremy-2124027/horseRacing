@@ -20,6 +20,8 @@ public class DispositifsDeLaCourse {
 
     private static AtomicBoolean enCours = new AtomicBoolean(true);
 
+    private static List<Parieur> parieursDeLaCourse = new ArrayList<>();
+
     public DispositifsDeLaCourse(int nombreChevaux, double coteDeBase) {
         // Permet de numéroter chaque cheval
         int compteurCheval = 1;
@@ -450,5 +452,19 @@ public class DispositifsDeLaCourse {
 
     public List<Cheval> getChevauxDeCourse() {
         return chevauxDeCourse;
+    }
+
+    public List<Parieur> getParieursDeLaCourse() {
+        return parieursDeLaCourse;
+    }
+
+    public Cheval trouveVainqueur() {
+        for (Integer key : dictionnairePosition.keySet()) {
+            if (dictionnairePosition.get(key).get() == 10){
+                chevauxDeCourse.get(key - 1).setNombreVictoire(chevauxDeCourse.get(key - 1).getNombreVictoire() + 1);
+                return chevauxDeCourse.get(key - 1);
+            }
+        }
+        return null;
     }
 }

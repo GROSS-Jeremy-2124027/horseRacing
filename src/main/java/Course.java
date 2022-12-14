@@ -6,15 +6,15 @@ public class Course {
         boolean continueCourse = true;
         while (continueCourse) {
             // Saisie au clavier du nombre de chevaux dans la course par l'utilisateur
-            Scanner entreeClavier = new Scanner(System.in);
             System.out.println("Entrer le nombre de cheval pour la course : (entre 5 et 9)");
+            Scanner entreeClavier = new Scanner(System.in);
+            int nombreCheval = entreeClavier.nextInt();
             // Si sa saisie n'est pas entre 5 et 9
-            while (entreeClavier.nextInt() <= 5 && entreeClavier.nextInt() >= 9) {
+            while (!(nombreCheval >= 5 && nombreCheval <= 9)) {
                 // On redemande une saisie au clavier
                 entreeClavier = new Scanner(System.in);
+                nombreCheval = entreeClavier.nextInt();
             }
-            // On met la saisie dans une variable
-            int nombreCheval = entreeClavier.nextInt();
 
             // On crée une nouvelle course avec une cote de base
             DispositifsDeLaCourse course = new DispositifsDeLaCourse(nombreCheval, 2.5);
@@ -24,6 +24,21 @@ public class Course {
                 // Clé --> Numéro du cheval, Valeur --> entier atomic correspondant à la position du cheval dans la course
                 dictionnairePositions.put(new Integer(i + 1), new AtomicInteger(0));
             }
+            System.out.println("Entrer le nombre de cheval pour la course : (entre 2 et 9)");
+            entreeClavier = new Scanner(System.in);
+            int nombreJoueur = entreeClavier.nextInt();
+            while (!(nombreJoueur >= 2 && nombreJoueur <= 9)) {
+                entreeClavier = new Scanner(System.in);
+                nombreJoueur = entreeClavier.nextInt();
+            }
+
+            for (int i = 0; i < nombreJoueur; i += 1) {
+                System.out.println("Rentrer nom parieur : ");
+                entreeClavier = new Scanner(System.in);
+                String nomParieur = entreeClavier.nextLine();
+                course.getParieursDeLaCourse().add(new Parieur(nomParieur));
+            }
+
 
             // On affiche les différents chevaux
             for (Iterator<Cheval> iterator = course.getChevauxDeCourse().iterator(); iterator.hasNext(); /* On "incrémente" l'itérateur dans la boucle */ ) {
@@ -32,6 +47,17 @@ public class Course {
                 // Affichage
                 System.out.println("Cheval numéro : " + chevalTemp.getNumeroCheval());
                 System.out.println("Ce cheval s\'appelle " + chevalTemp.getNomCheval() + " c\'est un " + chevalTemp.getRace() + " " + chevalTemp.getSexeCheval() + ", sa cote est de " + chevalTemp.getCoteCheval() + " car c\'est un cheval " + chevalTemp.getVitesse());
+            }
+
+            for (Parieur parieur : course.getParieursDeLaCourse()) {
+                System.out.println(parieur.getNomParieur() + " pour qui voulez-vous parier ? (rentrer le numéro du cheval)");
+                entreeClavier = new Scanner(System.in);
+                int numeroDuChevalSurLequelParier = entreeClavier.nextInt();
+                while (numeroDuChevalSurLequelParier < 0 && numeroDuChevalSurLequelParier > nombreCheval) {
+                    entreeClavier = new Scanner(System.in);
+                    numeroDuChevalSurLequelParier = entreeClavier.nextInt();
+                }
+                parieur.setNumeroDuChevalSurLequelParier(numeroDuChevalSurLequelParier);
             }
 
             /* TODO:
@@ -59,6 +85,8 @@ public class Course {
                 }
             }
             System.out.println("FINI");
+            Cheval vainqueur = course.trouveVainqueur();
+            System.out.println(vainqueur.getNomCheval() + " le cheval numéro : " + vainqueur.getNumeroCheval() + " remporte la victoire pour sa course n°" + vainqueur.getNombreVictoire());
             break;
         }
     }

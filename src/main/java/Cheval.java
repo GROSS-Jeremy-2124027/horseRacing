@@ -56,4 +56,8 @@ public abstract class Cheval implements Runnable{
         return vitesse;
     }
 
+    public void setNombreVictoire(int nombreVictoire) {
+        this.nombreVictoire = nombreVictoire;
+    }
+
 }
