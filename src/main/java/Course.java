@@ -87,6 +87,21 @@ public class Course {
             System.out.println("FINI");
             Cheval vainqueur = course.trouveVainqueur();
             System.out.println(vainqueur.getNomCheval() + " le cheval numéro : " + vainqueur.getNumeroCheval() + " remporte la victoire pour sa course n°" + vainqueur.getNombreVictoire());
+
+            System.out.println("Mise à jour des cagnottes : ");
+            for (Parieur parieur : course.getParieursDeLaCourse()) {
+                if (parieur.getNumeroDuChevalSurLequelParier() == vainqueur.getNumeroCheval()) {
+                    parieur.setCagnotte(parieur.getCagnotte() + (parieur.getCagnotte() / vainqueur.getCoteCheval()));
+                } else {
+                    parieur.setCagnotte(parieur.getCagnotte() - (parieur.getCagnotte() / vainqueur.getCoteCheval()));
+                    if (parieur.getCagnotte() <= 0) {
+                        System.out.println(parieur.getNomParieur() + " est éliminé !");
+                        parieur = null;
+                    }
+                }
+                System.out.println(parieur);
+            }
+
             break;
         }
     }

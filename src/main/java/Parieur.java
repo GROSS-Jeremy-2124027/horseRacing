@@ -22,4 +22,26 @@ public class Parieur {
     public void setNumeroDuChevalSurLequelParier(int numeroDuChevalSurLequelParier) {
         this.numeroDuChevalSurLequelParier = numeroDuChevalSurLequelParier;
     }
+
+    public int getNumeroDuChevalSurLequelParier() {
+        return numeroDuChevalSurLequelParier;
+    }
+
+    public double getCagnotte() {
+        return cagnotte;
+    }
+
+    public void setCagnotte(double cagnotte) {
+        this.cagnotte = cagnotte;
+    }
+
+    @Override
+    public String toString() {
+        return "Parieur{" +
+                "cagnotte=" + cagnotte +
+                ", nombreVictoire=" + nombreVictoire +
+                ", nomParieur='" + nomParieur + '\'' +
+                ", numeroDuChevalSurLequelParier=" + numeroDuChevalSurLequelParier +
+                '}';
+    }
 }
