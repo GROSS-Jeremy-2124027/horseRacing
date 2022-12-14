@@ -1,6 +1,6 @@
 public enum Vitesse {
-    /*
-    Liste des différentes vitesse possible pour un cheval
+    /**
+     * Liste des différentes vitesse pour un cheval, ainsi que leur coefficients de victoires associés
      */
     TRES_LENT {
         @Override

@@ -425,10 +425,17 @@ public class DispositifsDeLaCourse {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public static Map<Integer, AtomicInteger> getDictionnairePosition() {
         return dictionnairePosition;
     }
 
+    /**
+     * Fonction permettant un affichage visuel simple de l'avancement de la course
+     */
     public static void affichagePositions() {
         StringBuilder avancement = new StringBuilder();
         avancement.setLength(10);
@@ -461,6 +468,10 @@ public class DispositifsDeLaCourse {
         return parieursDeLaCourse;
     }
 
+    /**
+     * Fonction permettant de trouver le cheval vainqueur de la course
+     * @return le cheval vainqueur de la course
+     */
     public Cheval trouveVainqueur() {
         for (Integer key : dictionnairePosition.keySet()) {
             if (dictionnairePosition.get(key).get() == 10){
@@ -471,12 +482,19 @@ public class DispositifsDeLaCourse {
         return null;
     }
 
+    /**
+     * Fonction permettant de remettre les chevaux à la ligne de départ pour une future course
+     */
     public void remettreChevalSurLigneDeDépart() {
         for (Integer cle : dictionnairePosition.keySet()) {
             dictionnairePosition.get(cle).set(0);
         }
     }
 
+    /**
+     * Fonction permettant de lancer les threads des chevaux
+     * @param nombreDeCourse
+     */
     public void lanceLesChevaux(int nombreDeCourse) {
         if (nombreDeCourse == 0) {
             for (Thread thread : listeThread) {

@@ -1,5 +1,6 @@
 public class Ecurie {
     // Méthode static pour créer un cheval très lent
+
     public static Cheval createChevalTresLent(ChevalFactory factory) {
         return factory.createChevalTresLent();
     }
