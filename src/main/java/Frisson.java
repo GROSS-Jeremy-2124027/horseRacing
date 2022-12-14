@@ -25,21 +25,12 @@ public class Frisson extends Cheval{
     public void run() {
         try {
             while (true) {
-                if (DispositifsDeLaCourse.getEnCours().get()) {
-                    Thread.sleep((long) Math.abs(1000 + (new Random().nextInt(1000) * getVitesse().getCoefficient())));
-                    if (DispositifsDeLaCourse.getEnCours().get()) {
-                        DispositifsDeLaCourse.getDictionnairePosition().get(numeroCheval).incrementAndGet();
-                    } else {
-                        break;
-                    }
-                    DispositifsDeLaCourse.affichagePositions();
-                    System.out.println();
-                } else {
-                    break;
-                }
+                Thread.sleep((long) Math.abs(1000 + (new Random().nextInt(1000) * getVitesse().getCoefficient())));
+                DispositifsDeLaCourse.getDictionnairePosition().get(numeroCheval).incrementAndGet();
+                DispositifsDeLaCourse.affichagePositions();
+                System.out.println();
                 if (DispositifsDeLaCourse.getDictionnairePosition().get(numeroCheval).get() == 10) {
                     DispositifsDeLaCourse.getEnCours().set(false);
-                    System.out.println("Cheval " + numeroCheval + " l\'emporte ! ");
                 }
             }
         } catch (InterruptedException e) {
