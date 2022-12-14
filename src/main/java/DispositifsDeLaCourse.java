@@ -467,4 +467,22 @@ public class DispositifsDeLaCourse {
         }
         return null;
     }
+
+    public void remettreChevalSurLigneDeDépart() {
+        for (Integer cle : dictionnairePosition.keySet()) {
+            dictionnairePosition.get(cle).set(0);
+        }
+    }
+
+    public void lanceLesChevaux(int nombreDeCourse) {
+        if (nombreDeCourse == 0) {
+            for (Thread thread : listeThread) {
+                thread.start();
+            }
+        } else {
+            for (Thread thread : listeThread) {
+                thread.resume();
+            }
+        }
+    }
 }
