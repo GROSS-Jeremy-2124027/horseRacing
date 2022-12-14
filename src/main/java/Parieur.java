@@ -1,4 +1,7 @@
 public class Parieur {
+    /**
+     * Classe définissant le parieur
+     */
     private double cagnotte;
     private int nombreVictoire;
     private String nomParieur;
@@ -33,6 +36,10 @@ public class Parieur {
 
     public void setCagnotte(double cagnotte) {
         this.cagnotte = cagnotte;
+    }
+
+    public void setNombreVictoire(int nombreVictoire) {
+        this.nombreVictoire = nombreVictoire;
     }
 
     @Override

@@ -6,6 +6,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class Cheval implements Runnable{
+    /**
+     * Classe définissant un cheval (qui sera representé sous forme de thread)
+     */
     // Attributs de la classe Cheval
     // Protected pour raison d'héritage
     protected String nomCheval;

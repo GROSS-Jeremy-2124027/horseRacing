@@ -3,6 +3,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class DispositifsDeLaCourse {
+    /**
+     * Classe définissant les dispositifs de la course (nombre de chevaux, cote de base, parieurs)
+     */
     // Attributs de la classe DispositifsDeLaCourse
 
     // Liste qui va comporter les chevaux de la course

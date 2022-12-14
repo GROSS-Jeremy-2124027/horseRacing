@@ -1,4 +1,7 @@
 public enum Vitesse {
+    /*
+    Liste des différentes vitesse possible pour un cheval
+     */
     TRES_LENT {
         @Override
         public double getCoefficient() {
