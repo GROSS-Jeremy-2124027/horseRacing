@@ -424,6 +424,16 @@ public class DispositifsDeLaCourse {
         return dictionnairePosition;
     }
 
+    public static String affichagePositions() {
+        String affichage = "";
+        for (int i = 1; i < dictionnairePosition.size() + 1; ++i) {
+            affichage += "Cheval " + i;
+            affichage += " est en position " + dictionnairePosition.get(i) + "\n";
+
+        }
+        return affichage;
+    }
+
     public static List<Thread> getListeThread() {
         return listeThread;
     }
