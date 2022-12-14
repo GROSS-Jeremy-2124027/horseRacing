@@ -435,7 +435,7 @@ public class DispositifsDeLaCourse {
                 avancement.insert(i, '#');
             }
             avancement.insert(10, '|');
-            System.out.println("Cheval " + integer.toString() + " : " + avancement.toString());
+            System.out.println("Cheval " + integer.toString() + " : " + avancement);
             avancement.setLength(0);
         }
     }
