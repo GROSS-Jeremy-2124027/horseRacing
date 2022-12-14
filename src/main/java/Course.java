@@ -3,7 +3,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Course {
     public static void main(String[] args) throws Exception {
-        int nombreCheval = 5;
+        int nombreCheval = 7;
         DispositifsDeLaCourse course = new DispositifsDeLaCourse(nombreCheval, 2.5);
 
         Map<Integer, AtomicInteger> dictionnairePositions = new HashMap<>();

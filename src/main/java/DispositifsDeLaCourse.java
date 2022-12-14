@@ -424,14 +424,20 @@ public class DispositifsDeLaCourse {
         return dictionnairePosition;
     }
 
-    public static String affichagePositions() {
-        String affichage = "";
-        for (int i = 1; i < dictionnairePosition.size() + 1; ++i) {
-            affichage += "Cheval " + i;
-            affichage += " est en position " + dictionnairePosition.get(i) + "\n";
-
+    public static void affichagePositions() {
+        StringBuilder avancement = new StringBuilder();
+        avancement.setLength(10);
+        for (Integer integer : getDictionnairePosition().keySet()) {
+            for (int i = 0; i < getDictionnairePosition().get(integer).get(); i += 1) {
+                avancement.insert(i, '-');
+            }
+            for (int i = getDictionnairePosition().get(integer).get(); i < 10; i += 1) {
+                avancement.insert(i, '#');
+            }
+            avancement.insert(10, '|');
+            System.out.println("Cheval " + integer.toString() + " : " + avancement.toString());
+            avancement.setLength(0);
         }
-        return affichage;
     }
 
     public static List<Thread> getListeThread() {

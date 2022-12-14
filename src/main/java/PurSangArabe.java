@@ -25,13 +25,13 @@ public class PurSangArabe extends Cheval{
         try {
             while (true) {
                 if (DispositifsDeLaCourse.getEnCours().get()) {
-                    Thread.sleep((long) Math.abs(1000 + (new Random().nextInt(500) * getVitesse().getCoefficient())));
+                    Thread.sleep((long) Math.abs(1000 + (new Random().nextInt(1000) * getVitesse().getCoefficient())));
                     if (DispositifsDeLaCourse.getEnCours().get()) {
                         DispositifsDeLaCourse.getDictionnairePosition().get(numeroCheval).incrementAndGet();
                     } else {
                         break;
                     }
-                    System.out.println(DispositifsDeLaCourse.affichagePositions());
+                    DispositifsDeLaCourse.affichagePositions();
                     System.out.println();
                 } else {
                     break;

@@ -32,7 +32,7 @@ public class QuarterHorse extends Cheval{
                     } else {
                         break;
                     }
-                    System.out.println(DispositifsDeLaCourse.affichagePositions());
+                    DispositifsDeLaCourse.affichagePositions();
                     System.out.println();
                 } else {
                     break;
