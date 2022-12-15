@@ -46,12 +46,12 @@ S'il ne reste qu'un seul parieur **ayant une cagnotte encore supérieure à 1€
 classDiagram
     class Cheval {
         <<abstract>>
-        -String nomCheval
-        -int numeroCheval
-        -int nombreVictoire
-        -double coteCheval
-        -enum sexeCheval
-        -enum vitesseCheval
+        #String nomCheval
+        #int numeroCheval
+        #int nombreVictoire
+        #double coteCheval
+        #enum sexeCheval
+        #enum vitesseCheval
         +calculNote() String
     }
     class Frisson {
@@ -128,11 +128,11 @@ classDiagram
     }
     
    class Ecurie {
-        +createChevalTresLent(ChevalFactory) Cheval
-        +createChevalLent(ChevalFactory) Cheval
-        +createChevalMoyen(ChevalFactory) Cheval
-        +createChevalRapide(ChevalFactory) Cheval
-        +createChevalTresRapide(ChevalFactory) Cheval
+        +createChevalTresLent(ChevalFactory) $Cheval
+        +createChevalLent(ChevalFactory) $Cheval
+        +createChevalMoyen(ChevalFactory) $Cheval
+        +createChevalRapide(ChevalFactory) $Cheval
+        +createChevalTresRapide(ChevalFactory) $Cheval
     }
     ChevalFactory <.. PaintHorseFactory
     ChevalFactory <.. QuarterHorseFactory
@@ -149,16 +149,16 @@ classDiagram
         -List~String~ typesDeChevaux
         -List~Vitesse~ listeDeVitesses
         -List~Sexe~ listeDesSexes
-        -List~Parieur~ parieurDeLaCourse
+        -List~Parieur~ parieurDeLaCourse$
         -Map~Integer, AtomicInteger~ dictionnairePosition
-        -List~Thread~ listeThread
-        -AtomicBoolean enCours
+        -List~Thread~ listeThread$
+        -AtomicBoolean enCours$
         +DispositifsDeLaCourse(int nombreChevaux, double coteDeBase)
     }
     
     class GenererNomCheval {
-        -List~String~ listeNomCheval
-        +donneNomCheval() String
+        -List~String~ listeNomCheval$
+        +donneNomCheval() $String
     }
     
     class Parieur {
