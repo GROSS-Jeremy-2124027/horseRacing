@@ -29,6 +29,7 @@ L’un des premiers problèmes que nous avons rencontré durant notre projet est
 Lorsque nous avons décidé de changer de sujet, nous avions pleinement conscience que nous ne devions pas voir les choses en grand si nous voulions à tout prix rendre un programme fonctionnel. De ce fait, nous n’avons pas un grand écart avec nos prévisions même si finalement, notre groupe a pu discerner plusieurs pistes d’améliorations :
 
 * Faire en sorte qu’un parieur puisse miser la somme qu’il souhaite miser et non pas l’entièreté de sa cagnotte.
+* Implémenter de la généricité à notre programme.
 * Régler les potentiels problèmes d’affichage de la course lorsque cette dernière se relance.
 * Permettre une visualisation plus claire de la course via l’utilisation de JavaFX.
 
