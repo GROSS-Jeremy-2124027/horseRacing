@@ -47,8 +47,7 @@ public class Course {
             System.out.println("Cheval numéro : " + chevalTemp.getNumeroCheval());
             System.out.println("Ce cheval s\'appelle " + chevalTemp.getNomCheval() + " c\'est un " + chevalTemp.getRace() + " " + chevalTemp.getSexeCheval() + ", sa cote est de " + chevalTemp.getCoteCheval() + " car c\'est un cheval " + chevalTemp.getVitesse());
         }
-        int nombreDeCourse = 0;
-        while (continueCourse) {
+        for(int nombreDeCourse = 0; continueCourse; nombreDeCourse += 1) {
             for (Parieur parieur : course.getParieursDeLaCourse()) {
                 System.out.println(parieur.getNomParieur() + " pour qui voulez-vous parier ? (rentrer le numéro du cheval)");
                 entreeClavier = new Scanner(System.in);
@@ -105,7 +104,6 @@ public class Course {
                 }
                 System.out.println(parieur.getNomParieur() + " il te reste : " + parieur.getCagnotte() + " €.");
             }
-            nombreDeCourse += 1;
             course.remettreChevalSurLigneDeDépart();
         }
     }
