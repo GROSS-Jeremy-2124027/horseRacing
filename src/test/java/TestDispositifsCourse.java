@@ -9,6 +9,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Classe de test pour la mise en place de la course
+ */
 public class TestDispositifsCourse {
     protected DispositifsDeLaCourse course;
 
@@ -17,11 +20,18 @@ public class TestDispositifsCourse {
         course = new DispositifsDeLaCourse(5, 2.5);
     }
 
+    /**
+     * Test permettant de savoir s'il ya autant de chevaux que de threads lancés
+     */
     @Test
     public void testPourSavoirSiIlYAAutantDeThreadsQueDeChevaux() {
         assertEquals(course.getListeThread().size(), course.getChevauxDeCourse().size());
     }
 
+    /**
+     * Test permettant de savoir si les clés du dictionnaire de positions des chevaux correspondent bien aux numéros
+     * des chevaux en course
+     */
     @Test
     public void testPourSavoirSiLesClesDuDictionnaireDePositionsCorrespondentAuxNumerosDesChevaux() {
         List<Integer> listeTest = new ArrayList<>();
@@ -31,6 +41,9 @@ public class TestDispositifsCourse {
         }
     }
 
+    /**
+     * Test permettant de savoir si les valeurs du dictionnaire de positions sont bien initialisés à zéro
+     */
     @Test
     public void testPourSavoirSiToutesLesValeursDuDictionnaireDePositionsSontAZero() {
         for (AtomicInteger atomicInteger : course.getDictionnairePosition().values()) {
@@ -38,12 +51,19 @@ public class TestDispositifsCourse {
         }
     }
 
+    /**
+     * Test permettant de savoir si l'on arrive bien à trouver un vainqueur dans la course de chevaux
+     */
     @Test
     public void testPourSavoirSiOnTrouveUnChevalVainqueur() {
         DispositifsDeLaCourse.getDictionnairePosition().put(2, new AtomicInteger(10));
         assertNotNull(course.trouveVainqueur());
     }
 
+    /**
+     *  Test permttant de savoir si les valeurs des clées du dictionnaire de position sont bien remises à zéro
+     *  après une course
+     */
     @Test
     public void testPourSavoirSiOnRemetBienLesValeursDesClesAZero() {
         DispositifsDeLaCourse.getDictionnairePosition().put(2, new AtomicInteger(10));
@@ -57,6 +77,9 @@ public class TestDispositifsCourse {
         }
     }
 
+    /**
+     * Test permettant de savoir si tous les parieurs on perdu leurs paris
+     */
     @Test
     public void testPourSavoirSiTousLesParieursOntPerdu() {
         course.getParieursDeLaCourse().clear();
