@@ -1,3 +1,4 @@
+
 ```mermaid
 classDiagram
     class Cheval {
@@ -11,32 +12,47 @@ classDiagram
         +calculNote() String
     }
     class Frisson {
-        +Frisson(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, vitesseCheval)
+        +Frisson()
         +calculNote() String
     }
    class PurSangArabe {
-        +PurSangArabe(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, vitesseCheval)
+        +PurSangArabe()
         +calculNote() String
     }
     class Mustang {
-        +Mustang(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, vitesseCheval)
+        +Mustang()
         +calculNote() String
     }
     class PaintHorse {
-        +PaintHorse(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, vitesseCheval)
+        +PaintHorse()
         +calculNote() String
     }
     class QuarterHorse {
-        +QuarterHorse(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, vitesseCheval)
+        +QuarterHorse()
         +calculNote() String
     }
-
- 
+    class Vitesse{
+    <<enumeration>>
+        TRES_LENT
+        LENT
+        MOYEN
+        RAPIDE
+        TRES_RAPIDE
+        +getCoefficient() double
+    }
+    class Sexe{
+    <<enumeration>>
+        MALE
+        FEMALE
+    }
+    
     Cheval <|-- Frisson
     Cheval <|-- PurSangArabe
     Cheval <|-- Mustang
     Cheval <|-- PaintHorse
     Cheval <|-- QuarterHorse
+    Cheval <|-- Sexe
+    Cheval <|-- Vitesse
     
 ```
 
@@ -80,4 +96,48 @@ classDiagram
     ChevalFactory <.. FrissonFactory
     ChevalFactory <.. PurSangArabeFactory
     ChevalFactory <.. MustangFactory
+```
+
+```mermaid
+classDiagram
+
+    class DispositifDeLaCourse {
+        -List~Cheval~ chevauxDeCourse
+        -List~String~ typesDeChevaux
+        -List~Vitesse~ listeDeVitesses
+        -List~Sexe~ listeDesSexes
+        -List~Parieur~ parieurDeLaCourse
+        -Map~Integer, AtomicInteger~ dictionnairePosition
+        -List~Thread~ listeThread
+        -AtomicBoolean enCours
+        +DispositifsDeLaCourse(int nombreChevaux, double coteDeBase)
+    }
+    
+    class GenererNomCheval {
+        -List~String~ listeNomCheval
+        +donneNomCheval() String
+    }
+    
+    class Parieur {
+        -double cagnotte
+        -int nombreVictoire
+        +Parieur()
+    }
+    class Vitesse{
+    <<enumeration>>
+        TRES_LENT
+        LENT
+        MOYEN
+        RAPIDE
+        TRES_RAPIDE
+    }
+    class Sexe{
+    <<enumeration>>
+        MALE
+        FEMALE
+    }
+    
+    DispositifDeLaCourse <|-- Vitesse
+    DispositifDeLaCourse <|-- Sexe
+    DispositifDeLaCourse o-- Parieur        
 ```
