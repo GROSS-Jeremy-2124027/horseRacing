@@ -3,10 +3,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Course {
     public static void main(String[] args) throws Exception {
-        /**
-         * Fonction principale, lancant le jeu (demande nombre de chevaux, de parieurs ainsi que les chevaux sur
-         * lesquels les joueurs misent)
-         */
         boolean continueCourse = true;
         // Saisie au clavier du nombre de chevaux dans la course par l'utilisateur
         System.out.println("Entrer le nombre de cheval pour la course : (entre 5 et 9)");
@@ -51,7 +47,8 @@ public class Course {
             System.out.println("Cheval numéro : " + chevalTemp.getNumeroCheval());
             System.out.println("Ce cheval s\'appelle " + chevalTemp.getNomCheval() + " c\'est un " + chevalTemp.getRace() + " " + chevalTemp.getSexeCheval() + ", sa cote est de " + chevalTemp.getCoteCheval() + " car c\'est un cheval " + chevalTemp.getVitesse());
         }
-        for(int nombreDeCourse = 0 ; continueCourse == true ; nombreDeCourse += 1) {
+        int nombreDeCourse = 0;
+        while (continueCourse) {
             for (Parieur parieur : course.getParieursDeLaCourse()) {
                 System.out.println(parieur.getNomParieur() + " pour qui voulez-vous parier ? (rentrer le numéro du cheval)");
                 entreeClavier = new Scanner(System.in);
@@ -65,8 +62,6 @@ public class Course {
             }
 
             /* TODO:
-                - Classement de chaque cheval
-                - Modifier la cote de chaque cheval en fonction de son nombre de victoire (rajouter un attribut nombreCourse pour chaque cheval et faire sa cote en fonction de ça ?)
                 - Javadoc
              */
             // On lance les threads qui correspondent aux chevaux
@@ -103,10 +98,14 @@ public class Course {
                     System.out.println(course.getParieursDeLaCourse().get(0).getNomParieur() + " remporte la victoire ! ");
                     System.out.println(course.getParieursDeLaCourse().get(0).getNomParieur() + " aura remporté un total de " + course.getParieursDeLaCourse().get(0).getNombreVictoires() + " paris.");
                     continueCourse = false;
+                    for (Thread thread : DispositifsDeLaCourse.getListeThread()) {
+                        thread.stop();
+                    }
                     break;
                 }
                 System.out.println(parieur.getNomParieur() + " il te reste : " + parieur.getCagnotte() + " €.");
             }
+            nombreDeCourse += 1;
             course.remettreChevalSurLigneDeDépart();
         }
     }
