@@ -51,7 +51,7 @@ public class Course {
             System.out.println("Cheval numéro : " + chevalTemp.getNumeroCheval());
             System.out.println("Ce cheval s\'appelle " + chevalTemp.getNomCheval() + " c\'est un " + chevalTemp.getRace() + " " + chevalTemp.getSexeCheval() + ", sa cote est de " + chevalTemp.getCoteCheval() + " car c\'est un cheval " + chevalTemp.getVitesse());
         }
-        for(int nombreDeCourse = 0 ;; nombreDeCourse += 1) {
+        for(int nombreDeCourse = 0 ; continueCourse == true ; nombreDeCourse += 1) {
             for (Parieur parieur : course.getParieursDeLaCourse()) {
                 System.out.println(parieur.getNomParieur() + " pour qui voulez-vous parier ? (rentrer le numéro du cheval)");
                 entreeClavier = new Scanner(System.in);
@@ -65,11 +65,8 @@ public class Course {
             }
 
             /* TODO:
-                - Chaque joueur rentre le numéro du cheval sur lequel il souhaite parier FAIT
                 - Classement de chaque cheval
                 - Modifier la cote de chaque cheval en fonction de son nombre de victoire (rajouter un attribut nombreCourse pour chaque cheval et faire sa cote en fonction de ça ?)
-                - Refaire une course en misant
-                - Docstring
                 - Javadoc
              */
             // On lance les threads qui correspondent aux chevaux
@@ -85,25 +82,32 @@ public class Course {
             }
             System.out.println("FINI");
             Cheval vainqueur = course.trouveVainqueur();
-            System.out.println(vainqueur.getNomCheval() + " le cheval numéro : " + vainqueur.getNumeroCheval() + " remporte la victoire pour la course n°" + nombreDeCourse + 1);
+            course.afficherResultatCourse();
 
-            System.out.println("Mise à jour des cagnottes : ");
             for (Parieur parieur : course.getParieursDeLaCourse()) {
-                if (parieur.getNumeroDuChevalSurLequelParier() == vainqueur.getNumeroCheval()) {
+                if (!(parieur.getNumeroDuChevalSurLequelParier() == vainqueur.getNumeroCheval())) {
                     parieur.setCagnotte(parieur.getCagnotte() + (parieur.getCagnotte() / vainqueur.getCoteCheval()));
-                    parieur.setNombreVictoire(parieur.getNombreVictoire() + 1);
-                } else {
+                    parieur.setNombreVictoires(parieur.getNombreVictoires() + 1);
+
                     parieur.setCagnotte(parieur.getCagnotte() - (parieur.getCagnotte() / vainqueur.getCoteCheval()));
-                    if (parieur.getCagnotte() <= 0) {
+                    if (parieur.getCagnotte() < 1) {
                         System.out.println(parieur.getNomParieur() + " est éliminé !");
+                        course.getParieursDeLaCourse().remove(parieur);
                         parieur = null;
                     }
+                } else {
+                    parieur.setCagnotte(parieur.getCagnotte() + (parieur.getCagnotte() / vainqueur.getCoteCheval()));
+                    parieur.setNombreVictoires(parieur.getNombreVictoires() + 1);
                 }
-                System.out.println(parieur);
+                if (course.verificationVictoireParieur()) {
+                    System.out.println(course.getParieursDeLaCourse().get(0).getNomParieur() + " remporte la victoire ! ");
+                    System.out.println(course.getParieursDeLaCourse().get(0).getNomParieur() + " aura remporté un total de " + course.getParieursDeLaCourse().get(0).getNombreVictoires() + " paris.");
+                    continueCourse = false;
+                    break;
+                }
+                System.out.println(parieur.getNomParieur() + " il te reste : " + parieur.getCagnotte() + " €.");
             }
-
             course.remettreChevalSurLigneDeDépart();
-            System.out.println(DispositifsDeLaCourse.getDictionnairePosition());
         }
     }
 }

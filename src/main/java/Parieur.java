@@ -9,7 +9,7 @@ public class Parieur {
     /**
      * Attribut correspondant au nombre de paris gagnant du parieur.
      */
-    private int nombreVictoire;
+    private int nombreVictoires;
     /**
      * Attribut correspondant au nom du parieur.
      */
@@ -26,7 +26,7 @@ public class Parieur {
      */
     public Parieur(String nomParieur) {
         this.cagnotte = 50;
-        this.nombreVictoire = 0;
+        this.nombreVictoires = 0;
         this.nomParieur = nomParieur;
     }
 
@@ -34,8 +34,8 @@ public class Parieur {
      * Getter permettant d'accéder à l'attribut correspondant au nombre de paris gagnant.
      * @return Nombre de paris gagnant.
      */
-    public int getNombreVictoire() {
-        return nombreVictoire;
+    public int getNombreVictoires() {
+        return nombreVictoires;
     }
 
     /**
@@ -86,9 +86,17 @@ public class Parieur {
     public String toString() {
         return "Parieur{" +
                 "cagnotte=" + cagnotte +
-                ", nombreVictoire=" + nombreVictoire +
+                ", nombreVictoire=" + nombreVictoires +
                 ", nomParieur='" + nomParieur + '\'' +
                 ", numeroDuChevalSurLequelParier=" + numeroDuChevalSurLequelParier +
                 '}';
+    }
+
+    /**
+     * Setter permettant de changer le nombre de victoires d'un parieur.
+     * @param nombreVictoires Entier correspondant au nouveau nombre de victoires d'un parieur.
+     */
+    public void setNombreVictoires(int nombreVictoires) {
+        this.nombreVictoires = nombreVictoires;
     }
 }

@@ -540,10 +540,48 @@ public class DispositifsDeLaCourse {
         }
     }
 
+    public boolean verificationVictoireParieur() {
+        if (getParieursDeLaCourse().size() == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public void afficherResultatCourse() {
+        // Algorithme de tri
+        List<Integer> listeResultat = new ArrayList<>();
+        List<Integer> listeNumeroChevaux = new ArrayList<>();
+        for (int i = 0; i < chevauxDeCourse.size(); i += 1) {
+            listeNumeroChevaux.add(i + 1);
+            listeResultat.add(dictionnairePosition.get(i + 1).get());
+        }
+        for (int i = 0; i < listeResultat.size() - 1; i += 1) {
+            for (int j = i + 1; j < listeResultat.size(); j += 1) {
+                if (listeResultat.get(i) < listeResultat.get(j)) {
+                    int tempResultat = listeResultat.get(i);
+                    int tempNumero = listeNumeroChevaux.get(i);
+
+                    listeResultat.set(i, listeResultat.get(j));
+                    listeNumeroChevaux.set(i, listeNumeroChevaux.get(j));
+
+                    listeResultat.set(j, tempResultat);
+                    listeNumeroChevaux.set(j, tempNumero);
+                }
+            }
+        }
+        for (int i = 0; i < listeNumeroChevaux.size(); i += 1) {
+            if (i == 0) {
+                System.out.println("Le cheval numéro " + listeNumeroChevaux.get(i) + " finit à la " + (i + 1) + "er place.");
+            } else {
+                System.out.println("Le cheval numéro " + listeNumeroChevaux.get(i) + " finit à la " + (i + 1) + "ème place.");
+            }
+        }
+    }
+
     /**
      * Méthode qui permet de commencer ou de reprendre la course en fonction du nombre de courses effectuées qui sera passé en
      * paramètre.
-     * @param nombreDeCourse Entier correspondant au nombre de courses effectuée pour l'instant.
+     * @param nombreDeCourse Entier correspondant au nombre de courses effectuées pour l'instant.
      */
     public void lanceLesChevaux(int nombreDeCourse) {
         // Si c'est la première course
