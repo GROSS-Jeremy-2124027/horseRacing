@@ -1,4 +1,10 @@
+/**
+ * Classe Enum qui contient les différentes vitesses qui peuvent être attribuées à un cheval.
+ */
 public enum Vitesse {
+    /**
+     * Token qui correspond à un cheval très lent.
+     */
     TRES_LENT {
         @Override
         public double getCoefficient() {
@@ -8,7 +14,11 @@ public enum Vitesse {
         public String toString() {
             return "très lent";
         }
-    }, LENT {
+    },
+    /**
+     * Token qui correspond à un cheval lent
+     */
+    LENT {
         @Override
         public double getCoefficient() {
             return 1.5;
@@ -17,7 +27,11 @@ public enum Vitesse {
         public String toString() {
             return "lent";
         }
-    }, MOYEN {
+    },
+    /**
+     * Token qui correspond à un cheval moyennement rapide
+     */
+    MOYEN {
         @Override
         public double getCoefficient() {
             return 1.0;
@@ -26,7 +40,11 @@ public enum Vitesse {
         public String toString() {
             return "moyennement rapide";
         }
-    }, RAPIDE {
+    },
+    /**
+     * Token qui correspond à un cheval rapide
+     */
+    RAPIDE {
         @Override
         public double getCoefficient() {
             return 0.8;
@@ -35,7 +53,11 @@ public enum Vitesse {
         public String toString() {
             return "rapide";
         }
-    }, TRES_RAPIDE {
+    },
+    /**
+     * Token qui correspond à un cheval très rapide
+     */
+    TRES_RAPIDE {
         @Override
         public double getCoefficient() {
             return 0.5;
@@ -46,7 +68,15 @@ public enum Vitesse {
         }
     };
 
-    // Méthode qui va retourner un double en fonction de la vitesse du cheval
+    /**
+     * Méthode abstraite qui retourne pour chaque vitesse un coefficient correspondant à cette dernière.
+     * @return Le coefficient de la vitesse.
+     */
     public abstract double getCoefficient();
+
+    /**
+     * Méthode abstraite qui retourne pour chaque vitesse une chaine de caractères correspondant au token qui l'utilise.
+     * @return La chaine de caractère pour la vitesse.
+     */
     public abstract String toString();
 }

@@ -2,26 +2,50 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Classe regroupant les différents attributs et méthodes nécessaires au bon fonctionnement de la course.
+ */
 public class DispositifsDeLaCourse {
-    // Attributs de la classe DispositifsDeLaCourse
-
-    // Liste qui va comporter les chevaux de la course
+    /**
+     * Attribut correspondant à une liste comportant tous les chevaux participants à la course.
+     */
     private List<Cheval> chevauxDeCourse = new ArrayList<>();
-    // Liste qui permet de répertorier les différentes races de chevaux
+    /**
+     * Attribut correspondant à une liste comportant toutes les races que les chevaux peuvent avoir.
+     */
     private List<String> typesDeChevaux = new ArrayList<>(List.of("Frisson", "Mustang", "PurSangArabe", "QuarterHorse"));
-    // Liste qui permet de répertorier les différents types de vitesses
+    /**
+     * Attribut correspondant à une liste comportant toutes les vitesses que peuvent prendre les chevaux.
+     */
     private List<Vitesse> listeDeVitesses = new ArrayList<>(List.of(Vitesse.TRES_LENT, Vitesse.LENT, Vitesse.MOYEN, Vitesse.RAPIDE, Vitesse.TRES_RAPIDE));
-    // Liste qui permet de savoir si le cheval est un male ou une femelle
+    /**
+     * Attribut correspondant à une liste comportant aux sexes que peut prendre les chevaux.
+     */
     private List<Sexe> listeDesSexes = new ArrayList<>(List.of(Sexe.MALE, Sexe.FEMALE));
-    // Map d'entiers et d'entiers atomics qui va permettre de déterminer la position de chaque cheval lors de la course
+    /**
+     * Attribut correspondant à un dictionnaire regroupant en clé le numéro du cheval faisant la course et en valeur un
+     * entier atomic correspondant à sa position actuelle dans la course.
+     */
     private static Map<Integer, AtomicInteger> dictionnairePosition = new HashMap<>();
-
+    /**
+     * Attribut static correspondant à une liste comportant tous les threads comportant un cheval pour la course.
+     */
     private static List<Thread> listeThread = new ArrayList<>();
-
+    /**
+     * Attribut static correspondant à une valeur booléenne atomic qui permet de savoir si la course est en cours ou non (true --> en course, false --> fini).
+     */
     private static AtomicBoolean enCours = new AtomicBoolean(true);
-
+    /**
+     * Attribut static correspondant à une liste comportant tous les parieurs de la course.
+     */
     private static List<Parieur> parieursDeLaCourse = new ArrayList<>();
 
+    /**
+     * Constructeur de la classe permettant de créer la course en indiquant le nombre de chevaux et la cote de base pour cette dernière.
+     * Chaque cheval crée est créé avec une race, une vitesse et un sexe aléatoire.
+     * @param nombreChevaux Entier correspondant au nombre de chevaux participant à la course.
+     * @param coteDeBase Double correspondant à la côte de base de la course.
+     */
     public DispositifsDeLaCourse(int nombreChevaux, double coteDeBase) {
         // Permet de numéroter chaque cheval
         int compteurCheval = 1;
@@ -422,65 +446,115 @@ public class DispositifsDeLaCourse {
 
     }
 
+    /**
+     * Getter permettant d'accéder au dictionnaire de positions static de la classe.
+     * @return Le dictionnaire de positions
+     */
     public static Map<Integer, AtomicInteger> getDictionnairePosition() {
         return dictionnairePosition;
     }
 
+    /**
+     * Méthode permettant d'afficer l'état actuel de la course à l'aide d'un StringBuilder s'adaptant en fonction de la position
+     * du cheval dans la course.
+     */
     public static void affichagePositions() {
+        // Création du StringBuilder et on initie sa taille à 10
         StringBuilder avancement = new StringBuilder();
-        avancement.setLength(10);
+        // On parcourt les clés du dictionnaire
         for (Integer integer : getDictionnairePosition().keySet()) {
+            // On fait une boucle partant de 0 jusqu'à la valeur de la clé
             for (int i = 0; i < getDictionnairePosition().get(integer).get(); i += 1) {
-                avancement.insert(i, '-');
+                // On insère un trait pour faire comprendre que le cheval avance
+                avancement.append('-');
             }
+            // On fait une boucle partant de la valeur de la clé jusqu'à la valeur maximale qui est dix
             for (int i = getDictionnairePosition().get(integer).get(); i < 10; i += 1) {
-                avancement.insert(i, '#');
+                // On insère un hashtag pour faire comprendre qu'il reste des étapes avant la fin de la course
+                avancement.append('#');
             }
-            avancement.insert(10, '|');
+            // On insère un trait vertical pour simuler la ligne d'arrivée
+            avancement.append('|');
             System.out.println("Cheval " + integer.toString() + " : " + avancement);
             avancement.setLength(0);
         }
     }
 
+    /**
+     * Getter permettant d'accéder à la liste static regroupant les threads de la course.
+     * @return La liste comportant les threads de la course.
+     */
     public static List<Thread> getListeThread() {
         return listeThread;
     }
 
+    /**
+     * Getter permettant d'accéder à l'attribut booléen atomic et static de la course.
+     * @return L'attribut booléen atomic et static de la course.
+     */
     public static AtomicBoolean getEnCours() {
         return enCours;
     }
 
+    /**
+     * Getter permettant d'accéder à la liste regroupant les chevaux participant à la course.
+     * @return La liste comportant les chevaux de la course.
+     */
     public List<Cheval> getChevauxDeCourse() {
         return chevauxDeCourse;
     }
 
+    /**
+     * Getter permettant d'accéder à la liste des parieurs participant à la course.
+     * @return La liste regroupant les parieurs pariant sur la course.
+     */
     public List<Parieur> getParieursDeLaCourse() {
         return parieursDeLaCourse;
     }
 
+    /**
+     * Méthode permettant de retrouver le cheval ayant remporté la course. Elle incrémente également de un le nombre de victoires de ce même cheval
+     * @return Le cheval vainqueur de la course.
+     */
     public Cheval trouveVainqueur() {
+        // On parcourt les clés du dictionnaire
         for (Integer key : dictionnairePosition.keySet()) {
-            if (dictionnairePosition.get(key).get() == 10){
-                chevauxDeCourse.get(key - 1).setNombreVictoire(chevauxDeCourse.get(key - 1).getNombreVictoire() + 1);
+            // Si la valeur est égale à 10
+            if (dictionnairePosition.get(key).get() == 10) {
+                // On incrémente le nombre de victoires avant de retourner le cheval
+                chevauxDeCourse.get(key - 1).setNombreVictoires(chevauxDeCourse.get(key - 1).getNombreVictoires() + 1);
                 return chevauxDeCourse.get(key - 1);
             }
         }
         return null;
     }
 
+    /**
+     * Méthode permettant de remettre à zéro toutes les valeurs du dicitonnaire regroupant les positions des chevaux.
+     */
     public void remettreChevalSurLigneDeDépart() {
+        // On parcourt les clés du dictionnaire de positions
         for (Integer cle : dictionnairePosition.keySet()) {
+            // On met à zéro chaque valeur
             dictionnairePosition.get(cle).set(0);
         }
     }
 
+    /**
+     * Méthode qui permet de commencer ou de reprendre la course en fonction du nombre de courses effectuées qui sera passé en
+     * paramètre.
+     * @param nombreDeCourse Entier correspondant au nombre de courses effectuée pour l'instant.
+     */
     public void lanceLesChevaux(int nombreDeCourse) {
+        // Si c'est la première course
         if (nombreDeCourse == 0) {
             for (Thread thread : listeThread) {
+                // On commence les threads.
                 thread.start();
             }
-        } else {
+        } else { // Si ce n'est pas la première course
             for (Thread thread : listeThread) {
+                // On redémarre les threads
                 thread.resume();
             }
         }

@@ -1,45 +1,92 @@
-public class FrissonFactory implements ChevalFactory{
+/**
+ * Classe implémentant l'interface ChevalFactory permettant de créer des objets Frisson en fonction de la vitesse souhaitée.
+ */
+public class FrissonFactory implements ChevalFactory {
+    /**
+     * Attribut correspondant au nom attribué au cheval.
+     */
     private String nomCheval;
+    /**
+     * Attribut correspondant au numéro du cheval.
+     */
     private int numeroCheval;
-    private int nombreVictoire;
+    /**
+     * Attribut correspondant au nombre de victoires du cheval.
+     */
+    private int nombreVictoires;
+    /**
+     * Attribut correspondant à la côte attribuée au cheval.
+     */
     private double coteCheval;
+    /**
+     * Attribut correspondant au sexe attribué au cheval.
+     */
     private Sexe sexeCheval;
 
-    public FrissonFactory(String nomCheval, int numeroCheval, int nombreVictoire, double coteCheval, Sexe sexeCheval) {
+    /**
+     * Constructeur de la classe FrissonFactory qui permet de créer une instance de cette classe. Elle ne prend pas
+     * en paramètre l'attribut vitesseCheval, ce dernier sera attribué lors de l'appel d'une méthode de notre factory.
+     * @param nomCheval Chaine de caractères correspondante au nom attribué au cheval.
+     * @param numeroCheval Entier correspondant au numéro attribué au cheval.
+     * @param nombreVictoires Entier correspondant au nombre de victoires du cheval.
+     * @param coteCheval Double correspondant à la côte de base.
+     * @param sexeCheval Enum correspondant au sexe attribué au cheval.
+     */
+    public FrissonFactory(String nomCheval, int numeroCheval, int nombreVictoires, double coteCheval, Sexe sexeCheval) {
         this.nomCheval = nomCheval;
         this.numeroCheval = numeroCheval;
-        this.nombreVictoire = nombreVictoire;
+        this.nombreVictoires = nombreVictoires;
         this.coteCheval = coteCheval;
         this.sexeCheval = sexeCheval;
     }
 
+    /**
+     * Méthode de l'interface ChevalFactory qui permet d'instancier un objet de la classe Frisson avec une vitesse
+     * catégorisée comme étant très lente.
+     * @return Un cheval Frisson très lent.
+     */
     @Override
     public Cheval createChevalTresLent() {
-        // Retourne un Frisson très lent
-        return new Frisson(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.TRES_LENT);
+        return new Frisson(nomCheval, numeroCheval, nombreVictoires, coteCheval, sexeCheval, Vitesse.TRES_LENT);
     }
 
+    /**
+     * Méthode de l'interface ChevalFactory qui permet d'instancier un objet de la classe Frisson avec une vitesse
+     * catégorisée comme étant lente.
+     * @return Un cheval Frisson lent.
+     */
     @Override
     public Cheval createChevalLent() {
-        // Retourne un Frisson lent
-        return new Frisson(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.LENT);
+        return new Frisson(nomCheval, numeroCheval, nombreVictoires, coteCheval, sexeCheval, Vitesse.LENT);
     }
 
+    /**
+     * Méthode de l'interface ChevalFactory qui permet d'instancier un objet de la classe Frisson avec une vitesse
+     * catégorisée comme étant moyennement rapide.
+     * @return Un cheval Frisson moyennement rapide.
+     */
     @Override
     public Cheval createChevalMoyen() {
-        // Retourne un Frisson moyennement rapide
-        return new Frisson(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.MOYEN);
+        return new Frisson(nomCheval, numeroCheval, nombreVictoires, coteCheval, sexeCheval, Vitesse.MOYEN);
     }
 
+    /**
+     * Méthode de l'interface ChevalFactory qui permet d'instancier un objet de la classe Frisson avec une vitesse
+     * catégorisée comme étant rapide.
+     * @return Un cheval Frisson rapide.
+     */
     @Override
     public Cheval createChevalRapide() {
-        // Retourne un Frisson rapide
-        return new Frisson(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.RAPIDE);
+        return new Frisson(nomCheval, numeroCheval, nombreVictoires, coteCheval, sexeCheval, Vitesse.RAPIDE);
     }
 
+    /**
+     * Méthode de l'interface ChevalFactory qui permet d'instancier un objet de la classe Frisson avec une vitesse
+     * catégorisée comme étant très lente.
+     * @return Un cheval Frisson très rapide.
+     */
     @Override
     public Cheval createChevalTresRapide() {
-        // Retourne un Frisson très rapide
-        return new Frisson(nomCheval, numeroCheval, nombreVictoire, coteCheval, sexeCheval, Vitesse.TRES_RAPIDE);
+        return new Frisson(nomCheval, numeroCheval, nombreVictoires, coteCheval, sexeCheval, Vitesse.TRES_RAPIDE);
     }
 }

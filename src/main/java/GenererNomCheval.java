@@ -2,8 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Classe permettant de générer aléatoirement un nom qui sera associé à un cheval.
+ */
 public class GenererNomCheval {
-    // Liste de chaine de caractère comportant les cinquante noms de chevaux les plus utilisés (apparement)
+    /**
+     * Attribut static étant une liste permettant de regrouper les noms possibles pour un cheval.
+     */
     private static List<String> listeNomCheval = new ArrayList<>(List.of("Arion",
             "Balios",
             "Basmati",
@@ -54,7 +59,12 @@ public class GenererNomCheval {
             "Xanthos",
             "Youps",
             "Zigzag"));
-    // Méthode qui renvoie une chaine de caractère pour nommer un cheval
+
+    /**
+     * Méthode static permettant de retourner un nom choisit aléatoirement dans la liste. Le nom alors choisit sera aussi
+     * supprimé de la liste.
+     * @return Une chaine de caractère correspondant au nom du cheval.
+     */
     public static String donneNomCheval() {
         // On prend un indice aléatoirement
         int indiceListeCheval = new Random().nextInt(listeNomCheval.size());
