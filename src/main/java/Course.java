@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Classe contenant la méthode static main pour pouvoir lancer la course.
  */
 public class Course {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         boolean continueCourse = true;
 
         // Saisie au clavier du nombre de chevaux dans la course par l'utilisateur

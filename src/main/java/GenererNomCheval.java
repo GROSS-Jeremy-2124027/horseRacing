@@ -75,4 +75,12 @@ public class GenererNomCheval {
         // On retourne le nom
         return nomCheval;
     }
+
+    /**
+     * Getter pour accéder à l'attribut static regroupant les noms de chevaux.
+     * @return La liste contenant les noms de chevaux
+     */
+    public static List<String> getListeNomCheval() {
+        return listeNomCheval;
+    }
 }
