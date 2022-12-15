@@ -540,6 +540,10 @@ public class DispositifsDeLaCourse {
         }
     }
 
+    /**
+     * Méthode permettant de savoir s'il ne reste qu'un seul parieur dans la liste ce qui fait de lui le grand vainqueur.
+     * @return true / false
+     */
     public boolean verificationVictoireParieur() {
         if (getParieursDeLaCourse().size() == 1) {
             return true;
@@ -547,8 +551,14 @@ public class DispositifsDeLaCourse {
         return false;
     }
 
+    /**
+     * Méthode permettant de trier deux listes correspondantes respectivement à une liste avec le parcourt de chaque cheval
+     * dans la course et son numéro.
+     */
     public void afficherResultatCourse() {
         // Algorithme de tri
+
+        // On crée deux listes, une avec les résultats et l'autre avec les numéros des chevaux
         List<Integer> listeResultat = new ArrayList<>();
         List<Integer> listeNumeroChevaux = new ArrayList<>();
         for (int i = 0; i < chevauxDeCourse.size(); i += 1) {
@@ -569,12 +579,40 @@ public class DispositifsDeLaCourse {
                 }
             }
         }
+        // Affichage
         for (int i = 0; i < listeNumeroChevaux.size(); i += 1) {
             if (i == 0) {
                 System.out.println("Le cheval numéro " + listeNumeroChevaux.get(i) + " finit à la " + (i + 1) + "er place.");
             } else {
                 System.out.println("Le cheval numéro " + listeNumeroChevaux.get(i) + " finit à la " + (i + 1) + "ème place.");
             }
+        }
+    }
+
+    /**
+     * Méthode permettant d'arrêter les threads dans la liste des threads pour arrêter définitivement la course.
+     */
+    public void arretDeLaCourse() {
+        for (Thread thread : listeThread) {
+            thread.stop();
+        }
+    }
+
+    /**
+     * Méthode permettant de savoir si la liste des parieurs est vide, ce qui veut dire que la totalité des parieurs ont
+     * une cagnotte inférieure à 1 et donc aucun vainqueur ne peut être désigné.
+     * @return
+     */
+    public boolean defaiteGenerale() {
+        return parieursDeLaCourse.isEmpty();
+    }
+
+    /**
+     * Méthode permettant d'afficher les résultats des parieurs si ces derniers décident d'arrêter.
+     */
+    public void affichageResultatsParieurs() {
+        for (Parieur parieur : parieursDeLaCourse) {
+            System.out.println(parieur.getNomParieur() + " a une cagnotte de " + parieur.getCagnotte() + "€ pour un total de " + parieur.getNombreVictoires() + " paris gagnés.");
         }
     }
 
