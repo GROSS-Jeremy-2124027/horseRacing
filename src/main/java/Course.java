@@ -3,6 +3,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Course {
     public static void main(String[] args) throws Exception {
+        /**
+         * Fonction principale, lancant le jeu (demande nombre de chevaux, de parieurs ainsi que les chevaux sur
+         * lesquels les joueurs misent)
+         */
         boolean continueCourse = true;
         // Saisie au clavier du nombre de chevaux dans la course par l'utilisateur
         System.out.println("Entrer le nombre de cheval pour la course : (entre 5 et 9)");
@@ -23,7 +27,7 @@ public class Course {
             // Clé --> Numéro du cheval, Valeur --> entier atomic correspondant à la position du cheval dans la course
             dictionnairePositions.put(new Integer(i + 1), new AtomicInteger(0));
         }
-        System.out.println("Entrer le nombre de cheval pour la course : (entre 2 et 9)");
+        System.out.println("Entrer le nombre de joueur : (entre 2 et 9)");
         entreeClavier = new Scanner(System.in);
         int nombreJoueur = entreeClavier.nextInt();
         while (!(nombreJoueur >= 2 && nombreJoueur <= 9)) {
@@ -57,6 +61,7 @@ public class Course {
                     numeroDuChevalSurLequelParier = entreeClavier.nextInt();
                 }
                 parieur.setNumeroDuChevalSurLequelParier(numeroDuChevalSurLequelParier);
+
             }
 
             /* TODO:
@@ -80,12 +85,13 @@ public class Course {
             }
             System.out.println("FINI");
             Cheval vainqueur = course.trouveVainqueur();
-            System.out.println(vainqueur.getNomCheval() + " le cheval numéro : " + vainqueur.getNumeroCheval() + " remporte la victoire pour la course n°" + nombreDeCourse);
+            System.out.println(vainqueur.getNomCheval() + " le cheval numéro : " + vainqueur.getNumeroCheval() + " remporte la victoire pour la course n°" + nombreDeCourse + 1);
 
             System.out.println("Mise à jour des cagnottes : ");
             for (Parieur parieur : course.getParieursDeLaCourse()) {
                 if (parieur.getNumeroDuChevalSurLequelParier() == vainqueur.getNumeroCheval()) {
                     parieur.setCagnotte(parieur.getCagnotte() + (parieur.getCagnotte() / vainqueur.getCoteCheval()));
+                    parieur.setNombreVictoire(parieur.getNombreVictoire() + 1);
                 } else {
                     parieur.setCagnotte(parieur.getCagnotte() - (parieur.getCagnotte() / vainqueur.getCoteCheval()));
                     if (parieur.getCagnotte() <= 0) {
